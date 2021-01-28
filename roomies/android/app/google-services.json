@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "861464010364",
+    "project_id": "roomies-fb5e4",
+    "storage_bucket": "roomies-fb5e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861464010364:android:0f83ae89c56b94b481f3f9",
+        "android_client_info": {
+          "package_name": "com.benzene2.roomies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861464010364-jj7gpd16cjvat6do2b7b681mg53sc3ii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsbMUQTg6spC2DWOdS0S7qHvIgf7jQ82M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861464010364-jj7gpd16cjvat6do2b7b681mg53sc3ii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roomies/ui/divider.dart';
 import 'package:roomies/ui/text.dart';
@@ -55,7 +56,11 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                                   color: Colors.grey[900],
                                   size: 18),
                               color: Colors.grey[100],
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  logoutdown = !logoutdown;
+                                });
+                              },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                             )),
@@ -70,7 +75,9 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                                   color: Colors.white,
                                   size: 18),
                               color: Theme.of(context).accentColor,
-                              onPressed: () {},
+                              onPressed: () async {
+                                await FirebaseAuth.instance.signOut();
+                              },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                             )),

@@ -3,6 +3,7 @@ import 'package:roomies/screens/profile.dart';
 import 'package:roomies/screens/rooms.dart';
 import 'package:roomies/screens/search.dart';
 import 'package:roomies/ui/text.dart';
+import 'package:roomies/widgets/appbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,6 +17,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: appbar(),
+      ),
       // extendBody: true,
 
       bottomNavigationBar: BottomNavigationBar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roomies/screens/addplace.dart';
 import 'package:roomies/ui/divider.dart';
 import 'package:roomies/ui/roombubble.dart';
 
@@ -20,10 +21,6 @@ class _ProfileState extends State<Profile> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: appbar(),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -74,7 +71,12 @@ class _ProfileState extends State<Profile> {
                         child: bold_text(text: 'Add your Place', size: 20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddPlace()));
+                        }),
                   ))
                 : Container(),
             divider(),

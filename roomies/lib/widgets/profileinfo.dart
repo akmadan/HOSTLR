@@ -8,7 +8,7 @@ class ProfileInfo extends StatelessWidget {
     var w = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.all(10),
-      height: 100,
+      height: 80,
       width: w,
       child: Column(
         children: [

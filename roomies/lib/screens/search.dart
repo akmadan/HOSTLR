@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roomies/ui/text.dart';
-import 'package:roomies/widgets/appbar.dart';
+
 
 class Search extends StatefulWidget {
   @override
@@ -11,6 +10,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     );
+      backgroundColor: Color(0xff0a0a0a),
+    );
   }
 }

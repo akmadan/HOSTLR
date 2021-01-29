@@ -21,6 +21,7 @@ class _ProfileState extends State<Profile> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Color(0xff0a0a0a),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -67,7 +68,7 @@ class _ProfileState extends State<Profile> {
                     width: double.infinity,
                     padding: EdgeInsets.all(10),
                     child: RaisedButton(
-                        color: Colors.black54,
+                        color: Color(0xff332f2f),
                         child: bold_text(text: 'Add your Place', size: 20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),

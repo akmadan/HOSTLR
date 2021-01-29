@@ -12,6 +12,7 @@ class _RoomsState extends State<Rooms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff0a0a0a),
       body: SingleChildScrollView(child: Column(
         children:[
           AllRooms()

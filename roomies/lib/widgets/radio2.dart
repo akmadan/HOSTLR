@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:roomies/ui/text.dart';
 
-class Radio1 extends StatefulWidget {
+class Radio2 extends StatefulWidget {
   static int value = 0;
   @override
-  _Radio1State createState() => _Radio1State();
+  _Radio2State createState() => _Radio2State();
 }
 
-class _Radio1State extends State<Radio1> {
-  List<String> method = ['For Families', 'For anyone'];
+class _Radio2State extends State<Radio2> {
+  List<String> method = ['Flat', 'Hostel'];
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +23,13 @@ class _Radio1State extends State<Radio1> {
               ),
               leading: Radio(
                 value: i,
-                groupValue: Radio1.value,
+                groupValue: Radio2.value,
                 activeColor: Theme.of(context).primaryColor,
                 onChanged: i == 5
                     ? null
                     : (int value) {
                         setState(() {
-                          Radio1.value = value;
+                          Radio2.value = value;
                         });
                       },
               ),

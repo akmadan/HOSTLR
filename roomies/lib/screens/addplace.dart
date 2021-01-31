@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:roomies/ui/divider.dart';
 import 'package:roomies/ui/heading.dart';
 import 'package:roomies/ui/text.dart';
@@ -8,6 +9,7 @@ import 'package:roomies/widgets/adddisplay.dart';
 import 'package:roomies/widgets/addphotos.dart';
 import 'package:roomies/widgets/otherinfo.dart';
 import 'package:roomies/widgets/radio1.dart';
+import 'package:roomies/widgets/radio2.dart';
 
 class AddPlace extends StatefulWidget {
   final String uid, location;
@@ -27,18 +29,21 @@ class _AddPlaceState extends State<AddPlace> {
         .setData({
       'uid': widget.uid,
       'name': AddDisplay.namecontroller.text,
-      'whom': Radio1.value,
+      'whom': Radio1.value.toString(),
       'address': OtherInfo.addresscontroller.text,
       'rent': OtherInfo.rentcontroller.text,
       'time': OtherInfo.timecontroller.text,
-      'description': OtherInfo.descriptioncontroller.text
+      'description': OtherInfo.descriptioncontroller.text,
+      'type': Radio2.value.toString(),
     });
 
     await Firestore.instance
         .collection('users')
         .document(widget.location)
         .collection('data')
-        .document(widget.uid,)
+        .document(
+          widget.uid,
+        )
         .collection('places')
         .document(OtherInfo.dropdownValue.toLowerCase())
         .collection('data')
@@ -49,8 +54,17 @@ class _AddPlaceState extends State<AddPlace> {
       'address': OtherInfo.addresscontroller.text,
       'rent': OtherInfo.rentcontroller.text,
       'time': OtherInfo.timecontroller.text,
-      'description': OtherInfo.descriptioncontroller.text
+      'description': OtherInfo.descriptioncontroller.text,
+      'type': Radio2.value,
     });
+    Fluttertoast.showToast(
+        msg: "Congratulations !, The Place has been added",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Theme.of(context).primaryColor,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   @override
@@ -77,6 +91,9 @@ class _AddPlaceState extends State<AddPlace> {
           divider(),
           Heading(text: 'For Whom the Place is ?'),
           Radio1(),
+          divider(),
+          Heading(text: 'Flat/Hostel ?'),
+          Radio2(),
           divider(),
           Heading(text: 'Other Information'),
           OtherInfo(),

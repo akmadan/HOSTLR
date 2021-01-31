@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:roomies/ui/text.dart';
 
-class RoomBubble extends StatefulWidget {
+class FlatBubble extends StatefulWidget {
   final String name, rent, time, whom, description, address, uid;
 
-  const RoomBubble(
+  const FlatBubble(
       {Key key,
       this.name,
       this.rent,
@@ -15,10 +15,10 @@ class RoomBubble extends StatefulWidget {
       this.uid})
       : super(key: key);
   @override
-  _RoomBubbleState createState() => _RoomBubbleState();
+  _FlatBubbleState createState() => _FlatBubbleState();
 }
 
-class _RoomBubbleState extends State<RoomBubble> {
+class _FlatBubbleState extends State<FlatBubble> {
   @override
   Widget build(BuildContext context) {
     return Container(

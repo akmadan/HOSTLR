@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roomies/screens/profile.dart';
 import 'package:roomies/screens/rooms.dart';
@@ -13,11 +15,31 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
+  String uid = '';
+  String location = '';
+
+  @override
+  void initState() {
+    finduserinfo();
+    super.initState();
+  }
+
+  finduserinfo() async {
+    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    final userid = user.uid;
+    DocumentSnapshot location_snapshot = await Firestore.instance
+        .collection('userlocations')
+        .document(userid)
+        .get();
+    setState(() {
+      uid = userid;
+      location = location_snapshot['location'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: appbar(),
@@ -54,9 +76,18 @@ class _HomePageState extends State<HomePage> {
       //********************************************** */
 
       body: PageView(
-        
         controller: _pageController,
-        children: <Widget>[Rooms(), Search(), Profile()],
+        children: <Widget>[
+          Rooms(
+            uid: uid,
+            location: location,
+          ),
+          Search(),
+          Profile(
+            uid: uid,
+            location: location,
+          )
+        ],
         onPageChanged: (page) {
           setState(() {
             _selectedIndex = page;

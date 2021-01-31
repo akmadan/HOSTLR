@@ -58,8 +58,12 @@ class _AuthFormState extends State<AuthForm> {
           'phone': phone,
           'email': email,
           'password': password,
-          'location': dropdownValue
+          'location': dropdownValue.toLowerCase()
         });
+        await Firestore.instance
+            .collection('userlocations')
+            .document(uid)
+            .setData({'location': dropdownValue.toLowerCase()});
       }
     } on PlatformException catch (err) {
       var message = 'An error occured';

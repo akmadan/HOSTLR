@@ -4,11 +4,13 @@ import 'package:roomies/ui/divider.dart';
 import 'package:roomies/ui/roombubble.dart';
 
 import 'package:roomies/ui/text.dart';
-import 'package:roomies/widgets/appbar.dart';
 import 'package:roomies/widgets/logout.dart';
 import 'package:roomies/widgets/profileinfo.dart';
 
 class Profile extends StatefulWidget {
+  final String uid, location;
+
+  const Profile({Key key, this.uid, this.location}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -18,8 +20,6 @@ class _ProfileState extends State<Profile> {
   bool rentdown = false;
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
-    var w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xff0a0a0a),
       body: SingleChildScrollView(
@@ -76,7 +76,10 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AddPlace()));
+                                  builder: (context) => AddPlace(
+                                        uid: widget.uid,
+                                        location: widget.location,
+                                      )));
                         }),
                   ))
                 : Container(),

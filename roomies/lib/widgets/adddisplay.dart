@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AddDisplay extends StatefulWidget {
+  static TextEditingController namecontroller = TextEditingController();
+
   @override
   _AddDisplayState createState() => _AddDisplayState();
 }
@@ -8,7 +10,6 @@ class AddDisplay extends StatefulWidget {
 class _AddDisplayState extends State<AddDisplay> {
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
 
     return Container(
@@ -23,7 +24,9 @@ class _AddDisplayState extends State<AddDisplay> {
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
-                decoration: InputDecoration(hintText: 'Name of Place'),
+                controller: AddDisplay.namecontroller,
+                decoration: InputDecoration(
+                    hintText: 'Name of Place', border: OutlineInputBorder()),
               ),
             ),
           ],

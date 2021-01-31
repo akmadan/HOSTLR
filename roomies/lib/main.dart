@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roomies/auth/authscreen.dart';
+
 import 'package:roomies/check.dart';
-import 'package:roomies/home.dart';
+
 
 void main() => runApp(new MyApp());
 

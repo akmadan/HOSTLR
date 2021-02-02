@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomies/rooms/all.dart';
 import 'package:roomies/rooms/flats.dart';
+import 'package:roomies/rooms/hostels.dart';
 
 class Rooms extends StatefulWidget {
   final String uid, location;
@@ -17,6 +18,10 @@ class _RoomsState extends State<Rooms> {
       backgroundColor: Color(0xff0a0a0a),
       body: SingleChildScrollView(
         child: Column(children: [
+          Hostels(
+            uid: widget.uid,
+            location: widget.location,
+          ),
           Flats(
             uid: widget.uid,
             location: widget.location,

@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:roomies/ui/flatbubble.dart';
 import 'package:roomies/ui/roombubble.dart';
 import 'package:roomies/ui/text.dart';
 
-class AllRooms extends StatefulWidget {
+class Hostels extends StatefulWidget {
   final String uid, location;
 
-  const AllRooms({Key key, this.uid, this.location}) : super(key: key);
+  const Hostels({Key key, this.uid, this.location}) : super(key: key);
   @override
-  _AllRoomsState createState() => _AllRoomsState();
+  _HostelsState createState() => _HostelsState();
 }
 
-class _AllRoomsState extends State<AllRooms> {
+class _HostelsState extends State<Hostels> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +24,7 @@ class _AllRoomsState extends State<AllRooms> {
             child: Row(
               children: [
                 SizedBox(width: 10),
-                bold_text(text: 'All Rooms', size: 24),
+                bold_text(text: 'Hostels', size: 24),
               ],
             ),
           ),
@@ -35,28 +36,32 @@ class _AllRoomsState extends State<AllRooms> {
                       .document(widget.location)
                       .collection('data')
                       .snapshots(),
-                  builder: (context, allroomsSnapshot) {
-                    if (allroomsSnapshot.connectionState ==
+                  builder: (context, flatsSnapshot) {
+                    if (flatsSnapshot.connectionState ==
                         ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
                     } else {
-                      final allroomsDocs = allroomsSnapshot.data.documents;
+                      final flatsDocs = flatsSnapshot.data.documents;
                       return Container(
                         height: 300,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: allroomsDocs.length,
+                          itemCount: flatsDocs.length,
                           itemBuilder: (context, index) {
-                            return RoomBubble(
-                              name: allroomsDocs[index]['name'],
-                              address: allroomsDocs[index]['address'],
-                              description: allroomsDocs[index]['description'],
-                              rent: allroomsDocs[index]['rent'],
-                              time: allroomsDocs[index]['time'],
-                              whom: allroomsDocs[index]['whom'].toString(),
-                              uid: allroomsDocs[index]['uid'],
-                              d0: allroomsDocs[index]['display_image'],
-                            );
+                            if (flatsDocs[index]['type'] == '1') {
+                              return RoomBubble(
+                                name: flatsDocs[index]['name'],
+                                address: flatsDocs[index]['address'],
+                                description: flatsDocs[index]['description'],
+                                rent: flatsDocs[index]['rent'],
+                                time: flatsDocs[index]['time'],
+                                whom: flatsDocs[index]['whom'].toString(),
+                                uid: flatsDocs[index]['uid'],
+                                d0: flatsDocs[index]['display_image'],
+                              );
+                            } else {
+                              return Container();
+                            }
                           },
                         ),
                       );

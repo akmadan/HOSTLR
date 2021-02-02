@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:roomies/ui/flatbubble.dart';
+import 'package:roomies/ui/roombubble.dart';
 import 'package:roomies/ui/text.dart';
 
 class Flats extends StatefulWidget {
@@ -48,7 +49,7 @@ class _FlatsState extends State<Flats> {
                           itemCount: flatsDocs.length,
                           itemBuilder: (context, index) {
                             if (flatsDocs[index]['type'] == '0') {
-                              return FlatBubble(
+                              return RoomBubble(
                                 name: flatsDocs[index]['name'],
                                 address: flatsDocs[index]['address'],
                                 description: flatsDocs[index]['description'],
@@ -56,9 +57,14 @@ class _FlatsState extends State<Flats> {
                                 time: flatsDocs[index]['time'],
                                 whom: flatsDocs[index]['whom'].toString(),
                                 uid: flatsDocs[index]['uid'],
+                                d0: flatsDocs[index]['display_image'],
                               );
+                            } else {
+                              return Container(
+                                  // color: Colors.red,
+                                  );
                             }
-                            return null;
+                            // return null;
                           },
                         ),
                       );

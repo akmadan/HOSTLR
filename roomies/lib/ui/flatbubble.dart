@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roomies/ui/text.dart';
 
 class FlatBubble extends StatefulWidget {
-  final String name, rent, time, whom, description, address, uid;
+  final String name, rent, time, whom, description, address, uid, d0;
 
   const FlatBubble(
       {Key key,
@@ -12,7 +12,8 @@ class FlatBubble extends StatefulWidget {
       this.whom,
       this.description,
       this.address,
-      this.uid})
+      this.uid,
+      this.d0})
       : super(key: key);
   @override
   _FlatBubbleState createState() => _FlatBubbleState();
@@ -41,7 +42,9 @@ class _FlatBubbleState extends State<FlatBubble> {
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10)),
                         image: DecorationImage(
-                            image: AssetImage('assets/sample2.jpg'),
+                            image: widget.d0 != null
+                                ? NetworkImage(widget.d0)
+                                : AssetImage('assets/sample2.jpg'),
                             fit: BoxFit.cover)),
                   ),
                 ),

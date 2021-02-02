@@ -70,6 +70,7 @@ class _OtherInfoState extends State<OtherInfo> {
             child: Container(
               padding: EdgeInsets.all(10),
               child: TextField(
+                keyboardType: TextInputType.number,
                 controller: OtherInfo.rentcontroller,
                 decoration: InputDecoration(
                     hintText: 'Rent in Rupees', border: OutlineInputBorder()),
@@ -81,6 +82,8 @@ class _OtherInfoState extends State<OtherInfo> {
             child: Container(
               padding: EdgeInsets.all(10),
               child: TextField(
+                keyboardType: TextInputType.number,
+                maxLength: 2,
                 controller: OtherInfo.timecontroller,
                 decoration: InputDecoration(
                     hintText: 'no. of months', border: OutlineInputBorder()),

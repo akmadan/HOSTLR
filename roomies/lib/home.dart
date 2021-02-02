@@ -59,12 +59,12 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            title: modified_text(text: 'Rooms'),
-            icon: Icon(Icons.home_rounded),
+            title: modified_text(text: 'Featured'),
+            icon: Icon(Icons.favorite_rounded),
           ),
           BottomNavigationBarItem(
-            title: modified_text(text: 'Search'),
-            icon: Icon(Icons.search),
+            title: modified_text(text: 'All Rooms'),
+            icon: Icon(Icons.home_rounded),
           ),
           BottomNavigationBarItem(
             title: modified_text(text: 'Profile'),
@@ -78,11 +78,11 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: _pageController,
         children: <Widget>[
+          Featured(),
           Rooms(
             uid: uid,
             location: location,
           ),
-          Search(),
           Profile(
             uid: uid,
             location: location,

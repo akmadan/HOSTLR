@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:roomies/ui/circular.dart';
 import 'package:roomies/ui/divider.dart';
 import 'package:roomies/ui/heading.dart';
 import 'package:roomies/ui/text.dart';
+import 'package:roomies/widgets/add_display_photo.dart';
 import 'package:roomies/widgets/adddisplay.dart';
 import 'package:roomies/widgets/addphotos.dart';
 import 'package:roomies/widgets/otherinfo.dart';
@@ -20,7 +22,56 @@ class AddPlace extends StatefulWidget {
 }
 
 class _AddPlaceState extends State<AddPlace> {
+  bool isloading = false;
+  //----------------------------------------------------
+
   saveinfo() async {
+    setState(() {
+      isloading = !isloading;
+    });
+
+    final ref0 = FirebaseStorage.instance
+        .ref()
+        .child('HostelImages')
+        .child('DisplayImages')
+        .child(AddDisplay.namecontroller.text + '.jpg');
+    await ref0.putFile(AddDisplayPhoto.display_image).onComplete;
+    final url0 = await ref0.getDownloadURL();
+
+    final ref1 = FirebaseStorage.instance
+        .ref()
+        .child('HostelImages')
+        .child('OtherImages')
+        .child('d1.jpg');
+    await ref1.putFile(AddPhotos.d1).onComplete;
+    final url1 = await ref1.getDownloadURL();
+
+    final ref2 = FirebaseStorage.instance
+        .ref()
+        .child('HostelImages')
+        .child('OtherImages')
+        .child('d2.jpg');
+    await ref2.putFile(AddPhotos.d2).onComplete;
+    final url2 = await ref2.getDownloadURL();
+
+    final ref3 = FirebaseStorage.instance
+        .ref()
+        .child('HostelImages')
+        .child('OtherImages')
+        .child('d3.jpg');
+    await ref3.putFile(AddPhotos.d3).onComplete;
+    final url3 = await ref3.getDownloadURL();
+
+    final ref4 = FirebaseStorage.instance
+        .ref()
+        .child('HostelImages')
+        .child('OtherImages')
+        .child('d4.jpg');
+    await ref4.putFile(AddPhotos.d4).onComplete;
+    final url4 = await ref4.getDownloadURL();
+
+    //************** */
+
     await Firestore.instance
         .collection('places')
         .document(OtherInfo.dropdownValue.toLowerCase())
@@ -35,7 +86,14 @@ class _AddPlaceState extends State<AddPlace> {
       'time': OtherInfo.timecontroller.text,
       'description': OtherInfo.descriptioncontroller.text,
       'type': Radio2.value.toString(),
+      'display_image': url0,
+      'd1': url1,
+      'd2': url2,
+      'd3': url3,
+      'd4': url4,
     });
+
+    //************** */
 
     await Firestore.instance
         .collection('users')
@@ -56,7 +114,15 @@ class _AddPlaceState extends State<AddPlace> {
       'time': OtherInfo.timecontroller.text,
       'description': OtherInfo.descriptioncontroller.text,
       'type': Radio2.value,
+      'display_image': url0,
+      'd1': url1,
+      'd2': url2,
+      'd3': url3,
+      'd4': url4,
     });
+
+    //************** */
+
     Fluttertoast.showToast(
         msg: "Congratulations !, The Place has been added",
         toastLength: Toast.LENGTH_LONG,
@@ -65,7 +131,13 @@ class _AddPlaceState extends State<AddPlace> {
         backgroundColor: Theme.of(context).primaryColor,
         textColor: Colors.white,
         fontSize: 16.0);
+
+    setState(() {
+      isloading = !isloading;
+    });
   }
+
+  //----------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +149,7 @@ class _AddPlaceState extends State<AddPlace> {
                 icon: Icon(Icons.check),
                 onPressed: () {
                   saveinfo();
-                })
+                }),
           ],
           backgroundColor: Colors.transparent,
           title: bold_text(text: 'Add Your Place')),
@@ -86,6 +158,7 @@ class _AddPlaceState extends State<AddPlace> {
           Heading(text: 'Display Information'),
           AddDisplay(),
           divider(),
+          isloading != false ? Circular() : Container(),
           Heading(text: 'Add Photos'),
           AddPhotos(),
           divider(),

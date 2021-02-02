@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roomies/widgets/add_display_photo.dart';
 
 class AddDisplay extends StatefulWidget {
   static TextEditingController namecontroller = TextEditingController();
@@ -10,14 +11,11 @@ class AddDisplay extends StatefulWidget {
 class _AddDisplayState extends State<AddDisplay> {
   @override
   Widget build(BuildContext context) {
-    var w = MediaQuery.of(context).size.width;
-
     return Container(
       padding: EdgeInsets.all(10),
       height: 250,
-      // color: Colors.red,
       child: Row(children: [
-        Container(width: w / 2.2, color: Colors.white),
+        AddDisplayPhoto(),
         Expanded(
             child: Column(
           children: [

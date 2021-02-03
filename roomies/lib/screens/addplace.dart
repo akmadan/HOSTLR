@@ -14,9 +14,10 @@ import 'package:roomies/widgets/radio1.dart';
 import 'package:roomies/widgets/radio2.dart';
 
 class AddPlace extends StatefulWidget {
-  final String uid, location;
+  final String uid, location, contact;
 
-  const AddPlace({Key key, this.uid, this.location}) : super(key: key);
+  const AddPlace({Key key, this.uid, this.location, this.contact})
+      : super(key: key);
   @override
   _AddPlaceState createState() => _AddPlaceState();
 }
@@ -86,6 +87,7 @@ class _AddPlaceState extends State<AddPlace> {
       'time': OtherInfo.timecontroller.text,
       'description': OtherInfo.descriptioncontroller.text,
       'type': Radio2.value.toString(),
+      'contact': widget.contact,
       'display_image': url0,
       'd1': url1,
       'd2': url2,
@@ -115,6 +117,7 @@ class _AddPlaceState extends State<AddPlace> {
       'time': OtherInfo.timecontroller.text,
       'description': OtherInfo.descriptioncontroller.text,
       'type': Radio2.value,
+      'contact': widget.contact,
       'display_image': url0,
       'd1': url1,
       'd2': url2,

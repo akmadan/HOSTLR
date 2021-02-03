@@ -7,9 +7,10 @@ import 'package:roomies/widgets/logout.dart';
 import 'package:roomies/widgets/profileinfo.dart';
 
 class Profile extends StatefulWidget {
-  final String uid, location;
+  final String uid, location, contact;
 
-  const Profile({Key key, this.uid, this.location}) : super(key: key);
+  const Profile({Key key, this.uid, this.location, this.contact})
+      : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -76,6 +77,7 @@ class _ProfileState extends State<Profile> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AddPlace(
+                                        contact: widget.contact,
                                         uid: widget.uid,
                                         location: widget.location,
                                       )));

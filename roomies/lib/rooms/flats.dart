@@ -56,6 +56,7 @@ class _FlatsState extends State<Flats> {
                                 time: flatsDocs[index]['time'],
                                 whom: flatsDocs[index]['whom'].toString(),
                                 uid: flatsDocs[index]['uid'],
+                                 contact: flatsDocs[index]['contact'],
                                 d0: flatsDocs[index]['display_image'],
                                 place_location: flatsDocs[index]['location'],
                               );

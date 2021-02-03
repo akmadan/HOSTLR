@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
   String uid = '';
   String location = '';
+  String contact = '';
 
   @override
   void initState() {
@@ -31,15 +32,23 @@ class _HomePageState extends State<HomePage> {
         .collection('userlocations')
         .document(userid)
         .get();
+    DocumentSnapshot contact_snapshot = await Firestore.instance
+        .collection('users')
+        .document(location_snapshot['location'])
+        .collection('data')
+        .document(userid)
+        .get();
     setState(() {
       uid = userid;
       location = location_snapshot['location'];
+      contact = contact_snapshot['phone'];
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color(0xff0a0a0a),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: appbar(),
@@ -84,6 +93,7 @@ class _HomePageState extends State<HomePage> {
             location: location,
           ),
           Profile(
+            contact: contact,
             uid: uid,
             location: location,
           )

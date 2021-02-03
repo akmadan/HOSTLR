@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:roomies/ui/text.dart';
 
 class ProfileInfo extends StatelessWidget {
+  final String name, contact;
+
+  const ProfileInfo({Key key, this.name, this.contact}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.all(10),

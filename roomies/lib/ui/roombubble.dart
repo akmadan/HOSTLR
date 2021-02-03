@@ -63,7 +63,7 @@ class _RoomBubbleState extends State<RoomBubble> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      width: 300,
+      width: 350,
       child: Card(
         color: Colors.grey[900],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -74,7 +74,7 @@ class _RoomBubbleState extends State<RoomBubble> {
               children: [
                 Positioned(
                   child: Container(
-                    width: 300,
+                    // width: 300,
                     height: 200,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -96,14 +96,31 @@ class _RoomBubbleState extends State<RoomBubble> {
               ],
             ),
             Container(
-              padding: EdgeInsets.only(left: 8),
+              // color: Colors.red,
+              padding: EdgeInsets.only(left: 9),
               height: 70,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Container(
-                          child: bold_text(text: widget.name, size: 16)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              // color: Colors.green,
+                              child: bold_text(text: widget.name, size: 19)),
+                          Container(
+                              // color: Colors.green,
+                              child: modified_text(
+                                  text: 'Rent : ₹ ' +
+                                      widget.rent +
+                                      ' / ' +
+                                      widget.time +
+                                      ' months',
+                                  size: 15)),
+                        ],
+                      ),
                     ),
                     issaved
                         ? IconButton(

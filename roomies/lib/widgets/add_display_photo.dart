@@ -27,7 +27,7 @@ class _AddDisplayPhotoState extends State<AddDisplayPhoto> {
       child: Container(
         width: w / 2.2,
         decoration: BoxDecoration(
-            color: Colors.red,
+            // color: Colors.red,
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
                 image: AddDisplayPhoto.display_image != null

@@ -91,6 +91,7 @@ class _AddPlaceState extends State<AddPlace> {
       'd2': url2,
       'd3': url3,
       'd4': url4,
+      'location': OtherInfo.dropdownValue.toLowerCase()
     });
 
     //************** */
@@ -119,6 +120,7 @@ class _AddPlaceState extends State<AddPlace> {
       'd2': url2,
       'd3': url3,
       'd4': url4,
+      'location': OtherInfo.dropdownValue.toLowerCase()
     });
 
     //************** */

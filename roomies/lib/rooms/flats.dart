@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:roomies/ui/flatbubble.dart';
 import 'package:roomies/ui/roombubble.dart';
 import 'package:roomies/ui/text.dart';
 
@@ -58,6 +57,7 @@ class _FlatsState extends State<Flats> {
                                 whom: flatsDocs[index]['whom'].toString(),
                                 uid: flatsDocs[index]['uid'],
                                 d0: flatsDocs[index]['display_image'],
+                                place_location: flatsDocs[index]['location'],
                               );
                             } else {
                               return Container(

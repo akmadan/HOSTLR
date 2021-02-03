@@ -1,8 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:roomies/ui/save_function.dart';
 import 'package:roomies/ui/text.dart';
 
 class RoomBubble extends StatefulWidget {
-  final String name, rent, time, whom, description, address, uid, d0;
+  final String name,
+      rent,
+      time,
+      whom,
+      description,
+      address,
+      uid,
+      d0,
+      place_location;
 
   const RoomBubble(
       {Key key,
@@ -13,13 +24,41 @@ class RoomBubble extends StatefulWidget {
       this.description,
       this.address,
       this.uid,
-      this.d0})
+      this.d0,
+      this.place_location})
       : super(key: key);
   @override
   _RoomBubbleState createState() => _RoomBubbleState();
 }
 
 class _RoomBubbleState extends State<RoomBubble> {
+  bool issaved = false;
+  @override
+  void initState() {
+    super.initState();
+    checksaved();
+  }
+
+  checksaved() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    String id = user.uid;
+    var saved = await Firestore.instance
+        .collection('saved')
+        .document(widget.place_location)
+        .collection(widget.name)
+        .document(id)
+        .get();
+    if (saved.exists) {
+      setState(() {
+        issaved = true;
+      });
+    } else {
+      setState(() {
+        issaved = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,7 +105,26 @@ class _RoomBubbleState extends State<RoomBubble> {
                       child: Container(
                           child: bold_text(text: widget.name, size: 16)),
                     ),
-                    IconButton(icon: Icon(Icons.bookmark), onPressed: () {})
+                    issaved
+                        ? IconButton(
+                            icon: Icon(
+                              Icons.bookmark,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            onPressed: () {
+                              remove_save(widget.name, widget.place_location);
+                              setState(() {
+                                issaved = !issaved;
+                              });
+                            })
+                        : IconButton(
+                            icon: Icon(Icons.bookmark),
+                            onPressed: () {
+                              save(widget.name, widget.place_location);
+                              setState(() {
+                                issaved = !issaved;
+                              });
+                            })
                   ]),
             )
           ],

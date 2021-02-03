@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomies/screens/addplace.dart';
 import 'package:roomies/ui/divider.dart';
-import 'package:roomies/ui/roombubble.dart';
-
+import 'package:roomies/ui/savedposts.dart';
 import 'package:roomies/ui/text.dart';
 import 'package:roomies/widgets/logout.dart';
 import 'package:roomies/widgets/profileinfo.dart';
@@ -118,12 +117,10 @@ class _ProfileState extends State<Profile> {
             ),
 
             savedown
-                ? Container(
-                    height: 300,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [RoomBubble(), RoomBubble()],
-                    ))
+                ? SavedPosts(
+                    userlocation: widget.location,
+                    useruid: widget.uid,
+                  )
                 : Container(),
             divider(),
 

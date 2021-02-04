@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:roomies/ui/roombubble.dart';
 import 'package:roomies/ui/text.dart';
 
-class Flats extends StatefulWidget {
+class Pg extends StatefulWidget {
   final String uid, location;
 
-  const Flats({Key key, this.uid, this.location}) : super(key: key);
+  const Pg({Key key, this.uid, this.location}) : super(key: key);
   @override
-  _FlatsState createState() => _FlatsState();
+  _PgState createState() => _PgState();
 }
 
-class _FlatsState extends State<Flats> {
+class _PgState extends State<Pg> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +23,7 @@ class _FlatsState extends State<Flats> {
             child: Row(
               children: [
                 SizedBox(width: 10),
-                bold_text(text: 'Flats', size: 24),
+                bold_text(text: 'PG (Paying Guest)', size: 24),
               ],
             ),
           ),
@@ -35,30 +35,29 @@ class _FlatsState extends State<Flats> {
                       .document(widget.location)
                       .collection('data')
                       .snapshots(),
-                  builder: (context, flatsSnapshot) {
-                    if (flatsSnapshot.connectionState ==
-                        ConnectionState.waiting) {
+                  builder: (context, pgSnapshot) {
+                    if (pgSnapshot.connectionState == ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
                     } else {
-                      final flatsDocs = flatsSnapshot.data.documents;
+                      final pgDocs = pgSnapshot.data.documents;
                       return Container(
                         height: 300,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: flatsDocs.length,
+                          itemCount: pgDocs.length,
                           itemBuilder: (context, index) {
-                            if (flatsDocs[index]['type'] == '1') {
+                            if (pgDocs[index]['type'] == '3') {
                               return RoomBubble(
-                                name: flatsDocs[index]['name'],
-                                address: flatsDocs[index]['address'],
-                                description: flatsDocs[index]['description'],
-                                rent: flatsDocs[index]['rent'],
-                                time: flatsDocs[index]['time'],
-                                whom: flatsDocs[index]['whom'].toString(),
-                                uid: flatsDocs[index]['uid'],
-                                 contact: flatsDocs[index]['contact'],
-                                d0: flatsDocs[index]['display_image'],
-                                place_location: flatsDocs[index]['location'],
+                                name: pgDocs[index]['name'],
+                                address: pgDocs[index]['address'],
+                                description: pgDocs[index]['description'],
+                                rent: pgDocs[index]['rent'],
+                                time: pgDocs[index]['time'],
+                                whom: pgDocs[index]['whom'].toString(),
+                                uid: pgDocs[index]['uid'],
+                                contact: pgDocs[index]['contact'],
+                                d0: pgDocs[index]['display_image'],
+                                place_location: pgDocs[index]['location'],
                               );
                             } else {
                               return Container(

@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black54,
         currentIndex: _selectedIndex,
         selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Theme.of(context).accentColor,
+        unselectedItemColor: Colors.white,
         selectedFontSize: 14,
         unselectedFontSize: 14,
         onTap: (value) {
@@ -68,12 +68,12 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            title: modified_text(text: 'Featured'),
-            icon: Icon(Icons.favorite_rounded),
-          ),
-          BottomNavigationBarItem(
             title: modified_text(text: 'All Rooms'),
             icon: Icon(Icons.home_rounded),
+          ),
+          BottomNavigationBarItem(
+            title: modified_text(text: 'Featured'),
+            icon: Icon(Icons.favorite_rounded),
           ),
           BottomNavigationBarItem(
             title: modified_text(text: 'Profile'),
@@ -87,11 +87,11 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: _pageController,
         children: <Widget>[
-          Featured(),
           Rooms(
             uid: uid,
             location: location,
           ),
+          Featured(),
           Profile(
             contact: contact,
             uid: uid,

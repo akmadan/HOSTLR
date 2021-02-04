@@ -48,7 +48,7 @@ class _HostelsState extends State<Hostels> {
                           scrollDirection: Axis.horizontal,
                           itemCount: flatsDocs.length,
                           itemBuilder: (context, index) {
-                            if (flatsDocs[index]['type'] == '1') {
+                            if (flatsDocs[index]['type'] == '2') {
                               return RoomBubble(
                                 name: flatsDocs[index]['name'],
                                 address: flatsDocs[index]['address'],

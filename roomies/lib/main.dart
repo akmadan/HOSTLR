@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:roomies/check.dart';
 
-
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Color(0xff7289da),
+          primaryColor: Color(0xff6364a7),
           brightness: Brightness.dark,
           accentColor: Color(0xff6B82D3)),
       home: Check(),

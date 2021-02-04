@@ -8,7 +8,7 @@ class Radio1 extends StatefulWidget {
 }
 
 class _Radio1State extends State<Radio1> {
-  List<String> method = ['For Families', 'For anyone'];
+  List<String> method = ['For anyone', 'For Families'];
 
   @override
   Widget build(BuildContext context) {

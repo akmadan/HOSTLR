@@ -8,14 +8,14 @@ class Radio2 extends StatefulWidget {
 }
 
 class _Radio2State extends State<Radio2> {
-  List<String> method = ['Flat', 'Hostel'];
+  List<String> method = ['Cot Basis', 'Flat', 'Hostel', 'PG (Paying Guest)'];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
-          for (int i = 0; i <= 1; i++)
+          for (int i = 0; i <=3; i++)
             ListTile(
               title: bold_text(
                 text: method[i],

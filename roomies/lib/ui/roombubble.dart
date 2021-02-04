@@ -109,7 +109,7 @@ class _RoomBubbleState extends State<RoomBubble> {
                               fit: BoxFit.cover)),
                     ),
                   ),
-                  widget.whom == '0'
+                  widget.whom == '1'
                       ? Positioned(
                           top: -1,
                           right: -1,

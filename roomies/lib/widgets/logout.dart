@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:roomies/ui/divider.dart';
 import 'package:roomies/ui/text.dart';
 
 class LogoutWidget extends StatefulWidget {
@@ -27,7 +26,10 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                     text: 'Logout',
                     size: 24,
                   ),
-                  modified_text(text: 'Do you wish to Logout ?')
+                  modified_text(
+                    text: 'Do you wish to Logout ?',
+                    color: Colors.grey[400],
+                  )
                 ],
               ),
               IconButton(
@@ -74,7 +76,7 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                                   text: 'Confirm',
                                   color: Colors.white,
                                   size: 18),
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).primaryColor,
                               onPressed: () async {
                                 await FirebaseAuth.instance.signOut();
                               },

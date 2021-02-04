@@ -106,8 +106,6 @@ class _AddPlaceState extends State<AddPlace> {
           widget.uid,
         )
         .collection('places')
-        .document(OtherInfo.dropdownValue.toLowerCase())
-        .collection('data')
         .document(AddDisplay.namecontroller.text)
         .setData({
       'name': AddDisplay.namecontroller.text,
@@ -129,7 +127,7 @@ class _AddPlaceState extends State<AddPlace> {
     //************** */
 
     Fluttertoast.showToast(
-        msg: "Congratulations !, The Place has been added",
+        msg: "Congratulations! The Place has been added",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -153,7 +151,25 @@ class _AddPlaceState extends State<AddPlace> {
             IconButton(
                 icon: Icon(Icons.check),
                 onPressed: () {
-                  saveinfo();
+                  if (AddDisplay.namecontroller.text == '' ||
+                      OtherInfo.addresscontroller.text == '' ||
+                      OtherInfo.rentcontroller.text == '' ||
+                      OtherInfo.timecontroller.text == '' ||
+                      AddDisplayPhoto.display_image == null ||
+                      AddPhotos.d1 == null ||
+                      AddPhotos.d2 == null ||
+                      AddPhotos.d3 == null ||
+                      AddPhotos.d4 == null) {
+                    Fluttertoast.showToast(
+                        msg: "Please Add the Required Information",
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.black,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  } else {
+                    saveinfo();
+                  }
                 }),
           ],
           backgroundColor: Colors.transparent,

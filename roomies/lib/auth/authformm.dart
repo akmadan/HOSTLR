@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:roomies/ui/logo.dart';
 import 'package:roomies/ui/text.dart';
 import 'package:roomies/widgets/locationcaution.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AuthForm extends StatefulWidget {
   @override
@@ -90,14 +92,14 @@ class _AuthFormState extends State<AuthForm> {
       width: w,
       child: ListView(
         children: [
-          Container(height: 150, width: w, color: Colors.blue),
+          Logo(),
+          loginText(),
           Container(
             padding: EdgeInsets.all(10),
             child: Form(
               key: _formkey,
               child: Column(
                 children: [
-                  // Logo(),
                   if (!isLoginpage)
                     Row(
                       //-----------------NAME-----------------------
@@ -204,8 +206,8 @@ class _AuthFormState extends State<AuthForm> {
                                   },
                                   items: <String>[
                                     'Pimpri',
-                                    'Dhankavdi',
-                                    'Chinchvad',
+                                    'Dhankawadi',
+                                    'Chinchwad',
                                   ].map<DropdownMenuItem<String>>(
                                       (String value) {
                                     return DropdownMenuItem<String>(
@@ -271,6 +273,8 @@ class _AuthFormState extends State<AuthForm> {
             height: 70,
             padding: EdgeInsets.all(10),
             child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 color: Theme.of(context).primaryColor,
                 onPressed: () {
                   trysubmit();
@@ -293,12 +297,32 @@ class _AuthFormState extends State<AuthForm> {
             },
             child: Text(
               isLoginpage
-                  ? 'New to Menu ? Create account'
+                  ? 'New to Hostlr ? Create account'
                   : 'Already have an account ? Login',
-              style: TextStyle(
-                  fontFamily: 'SFPro', color: Theme.of(context).primaryColor),
+              style: TextStyle(fontFamily: 'SFPro', color: Colors.white),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  //----------------------------------------------------
+
+  Widget loginText() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          isLoginpage
+              ? Expanded(
+                  child:
+                      Center(child: bold_text(text: 'Welcome back', size: 25)))
+              : Expanded(
+                  child: Center(
+                      child: bold_text(text: 'Register yourself', size: 25)),
+                ),
         ],
       ),
     );

@@ -52,8 +52,8 @@ class _OtherInfoState extends State<OtherInfo> {
             },
             items: <String>[
               'Pimpri',
-              'Dhankavdi',
-              'Chinchvad',
+              'Dhankawadi',
+              'Chinchwad',
             ].map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -68,9 +68,11 @@ class _OtherInfoState extends State<OtherInfo> {
         Row(children: [
           Expanded(
             child: Container(
+              // color: Colors.red,
               padding: EdgeInsets.all(10),
               child: TextField(
                 keyboardType: TextInputType.number,
+                maxLength: 6,
                 controller: OtherInfo.rentcontroller,
                 decoration: InputDecoration(
                     hintText: 'Rent in Rupees', border: OutlineInputBorder()),
@@ -80,6 +82,7 @@ class _OtherInfoState extends State<OtherInfo> {
           Container(padding: EdgeInsets.all(5), child: bold_text(text: 'for')),
           Expanded(
             child: Container(
+              // color: Colors.blue,
               padding: EdgeInsets.all(10),
               child: TextField(
                 keyboardType: TextInputType.number,

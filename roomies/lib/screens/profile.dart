@@ -5,11 +5,12 @@ import 'package:roomies/ui/savedposts.dart';
 import 'package:roomies/ui/text.dart';
 import 'package:roomies/widgets/logout.dart';
 import 'package:roomies/widgets/profileinfo.dart';
+import 'package:roomies/widgets/yourplaces.dart';
 
 class Profile extends StatefulWidget {
-  final String uid, location, contact;
+  final String uid, location, contact, name;
 
-  const Profile({Key key, this.uid, this.location, this.contact})
+  const Profile({Key key, this.uid, this.location, this.contact, this.name})
       : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
@@ -25,7 +26,10 @@ class _ProfileState extends State<Profile> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ProfileInfo(),
+            ProfileInfo(
+              name: widget.name,
+              contact: widget.contact,
+            ),
             divider(),
 
             //---------------------------------------
@@ -44,7 +48,9 @@ class _ProfileState extends State<Profile> {
                         size: 24,
                       ),
                       modified_text(
-                          text: 'Add your Rooms/Flats/Hostels for Renting'),
+                        text: 'Add your Rooms/Flats/Hostels for Renting',
+                        color: Colors.grey[400],
+                      ),
                       SizedBox(height: 15),
                     ],
                   ),
@@ -101,7 +107,10 @@ class _ProfileState extends State<Profile> {
                         text: 'Saved',
                         size: 24,
                       ),
-                      modified_text(text: 'Your Saved Places'),
+                      modified_text(
+                        text: 'Your Saved Places',
+                        color: Colors.grey[400],
+                      ),
                       SizedBox(height: 15),
                     ],
                   ),
@@ -128,8 +137,16 @@ class _ProfileState extends State<Profile> {
 
             //--------------------------------------
 
+            YourPlaces(
+              uid: widget.uid,
+              location: widget.location,
+            ),
+            divider(),
+
+            //--------------------------------------
+
             LogoutWidget(),
-            divider()
+            divider(),
           ],
         ),
       ),

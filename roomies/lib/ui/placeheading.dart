@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:roomies/ui/text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlaceHeading extends StatelessWidget {
-  final String name, contact, address;
+  final String name, contact, address, description;
 
-  const PlaceHeading({Key key, this.name, this.contact, this.address})
+  const PlaceHeading(
+      {Key key, this.name, this.contact, this.address, this.description})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.all(10),
-      height: 130,
+      // height: 130,
       width: w,
       child: Column(
         children: [
@@ -25,10 +27,17 @@ class PlaceHeading extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              modified_text(
-                text: contact,
-                size: 18,
+              GestureDetector(
+                onTap: () {
+                  launch(('tel://${contact}'));
+                },
+                child: modified_text(
+                  text: contact,
+                  size: 18,
+                  color: Theme.of(context).accentColor,
+                ),
               ),
             ],
           ),
@@ -37,6 +46,16 @@ class PlaceHeading extends StatelessWidget {
               Expanded(
                 child: modified_text(
                   text: address,
+                  size: 18,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: modified_text(
+                  text: description,
                   size: 18,
                 ),
               ),

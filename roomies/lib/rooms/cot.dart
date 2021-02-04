@@ -58,6 +58,10 @@ class _CotsState extends State<Cots> {
                                 uid: cotsDocs[index]['uid'],
                                  contact: cotsDocs[index]['contact'],
                                 d0: cotsDocs[index]['display_image'],
+                                d1: cotsDocs[index]['d1'],
+                              d2: cotsDocs[index]['d2'],
+                              d3: cotsDocs[index]['d3'],
+                              d4: cotsDocs[index]['d4'],
                                 place_location: cotsDocs[index]['location'],
                               );
                             } else {

@@ -57,6 +57,10 @@ class _AllRoomsState extends State<AllRooms> {
                               whom: allroomsDocs[index]['whom'].toString(),
                               uid: allroomsDocs[index]['uid'],
                               d0: allroomsDocs[index]['display_image'],
+                              d1: allroomsDocs[index]['d1'],
+                              d2: allroomsDocs[index]['d2'],
+                              d3: allroomsDocs[index]['d3'],
+                              d4: allroomsDocs[index]['d4'],
                               place_location: allroomsDocs[index]['location'],
                             );
                           },

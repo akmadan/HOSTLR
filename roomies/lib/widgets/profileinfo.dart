@@ -17,7 +17,7 @@ class ProfileInfo extends StatelessWidget {
           Row(
             children: [
               bold_text(
-                text: 'Akshit Madan',
+                text:name,
                 size: 28,
               ),
             ],
@@ -25,7 +25,7 @@ class ProfileInfo extends StatelessWidget {
           Row(
             children: [
               modified_text(
-                text: '8669164552',
+                text: contact,
                 size: 18,
               ),
             ],

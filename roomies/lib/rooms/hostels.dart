@@ -59,6 +59,10 @@ class _HostelsState extends State<Hostels> {
                                 uid: flatsDocs[index]['uid'],
                                 contact: flatsDocs[index]['contact'],
                                 d0: flatsDocs[index]['display_image'],
+                                 d1: flatsDocs[index]['d1'],
+                              d2: flatsDocs[index]['d2'],
+                              d3: flatsDocs[index]['d3'],
+                              d4: flatsDocs[index]['d4'],
                                 place_location: flatsDocs[index]['location'],
                               );
                             } else {

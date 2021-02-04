@@ -15,6 +15,10 @@ class RoomBubble extends StatefulWidget {
       address,
       uid,
       d0,
+      d1,
+      d2,
+      d3,
+      d4,
       place_location;
 
   const RoomBubble(
@@ -28,7 +32,11 @@ class RoomBubble extends StatefulWidget {
       this.uid,
       this.d0,
       this.place_location,
-      this.contact})
+      this.contact,
+      this.d1,
+      this.d2,
+      this.d3,
+      this.d4})
       : super(key: key);
   @override
   _RoomBubbleState createState() => _RoomBubbleState();
@@ -36,13 +44,14 @@ class RoomBubble extends StatefulWidget {
 
 class _RoomBubbleState extends State<RoomBubble> {
   bool issaved = false;
+  bool isme = false;
   @override
   void initState() {
     super.initState();
-    checksaved();
+    checksavedandme();
   }
 
-  checksaved() async {
+  checksavedandme() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     String id = user.uid;
     var saved = await Firestore.instance
@@ -58,6 +67,11 @@ class _RoomBubbleState extends State<RoomBubble> {
     } else {
       setState(() {
         issaved = false;
+      });
+    }
+    if (widget.uid == id) {
+      setState(() {
+        isme = true;
       });
     }
   }
@@ -78,6 +92,10 @@ class _RoomBubbleState extends State<RoomBubble> {
                       address: widget.address,
                       uid: widget.uid,
                       d0: widget.d0,
+                      d1: widget.d1,
+                      d2: widget.d2,
+                      d3: widget.d3,
+                      d4: widget.d4,
                       contact: widget.contact,
                       place_location: widget.place_location,
                     )));
@@ -109,6 +127,19 @@ class _RoomBubbleState extends State<RoomBubble> {
                               fit: BoxFit.cover)),
                     ),
                   ),
+                  isme
+                      ? Positioned(
+                          child: IconButton(
+                          onPressed: () {
+                            deleteplace(
+                                widget.place_location, widget.uid, widget.name);
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.black,
+                          ),
+                        ))
+                      : Container(),
                   widget.whom == '1'
                       ? Positioned(
                           top: -1,
@@ -118,7 +149,6 @@ class _RoomBubbleState extends State<RoomBubble> {
                 ],
               ),
               Container(
-                // color: Colors.red,
                 padding: EdgeInsets.only(left: 9),
                 height: 70,
                 child: Row(

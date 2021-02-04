@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:roomies/ui/PlaceImages.dart';
 import 'package:roomies/ui/divider.dart';
+import 'package:roomies/ui/fullimage.dart';
 import 'package:roomies/ui/placeheading.dart';
 
 import 'package:roomies/widgets/appbar.dart';
@@ -13,6 +15,10 @@ class Place extends StatefulWidget {
       address,
       uid,
       d0,
+      d1,
+      d2,
+      d3,
+      d4,
       contact,
       place_location;
 
@@ -27,7 +33,11 @@ class Place extends StatefulWidget {
       this.uid,
       this.d0,
       this.place_location,
-      this.contact})
+      this.contact,
+      this.d1,
+      this.d2,
+      this.d3,
+      this.d4})
       : super(key: key);
   @override
   _PlaceState createState() => _PlaceState();
@@ -36,7 +46,6 @@ class Place extends StatefulWidget {
 class _PlaceState extends State<Place> {
   @override
   Widget build(BuildContext context) {
-    var w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -46,60 +55,30 @@ class _PlaceState extends State<Place> {
           color: Color(0xff0a0a0a),
           child: ListView(
             children: [
+              //------------------------
               PlaceHeading(
+                description: widget.description,
                 name: widget.name,
                 contact: widget.contact,
                 address: widget.address,
               ),
               divider(),
               SizedBox(height: 10),
+              //------------------------
               PlaceRent(rent: widget.rent, time: widget.time),
               divider(),
               SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.all(10),
-                height: 250,
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    width: w / 2.2,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: widget.d0 != null
-                                ? NetworkImage(widget.d0)
-                                : AssetImage('assets/sample2.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    width: w / 2.2,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage('assets/default.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    width: w / 2.2,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage('assets/default.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    width: w / 2.2,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage('assets/default.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                ]),
-              )
+              //------------------------
+              PlaceImages(
+                d0: widget.d0,
+                d1: widget.d1,
+                d2: widget.d2,
+                d3: widget.d3,
+                d4: widget.d4,
+              ),
+              divider(),
+              SizedBox(height: 10),
+              //------------------------
             ],
           )),
     );

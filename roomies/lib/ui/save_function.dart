@@ -40,3 +40,21 @@ remove_save(String place_name, place_location) async {
       .document(place_name)
       .delete();
 }
+
+deleteplace(String area, String uid, String name) async {
+  await Firestore.instance
+      .collection('places')
+      .document(area)
+      .collection('data')
+      .document(name)
+      .delete();
+
+  await Firestore.instance
+      .collection('users')
+      .document(area)
+      .collection('data')
+      .document(uid)
+      .collection('places')
+      .document(name)
+      .delete();
+}

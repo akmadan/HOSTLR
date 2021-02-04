@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:roomies/screens/featured.dart';
 import 'package:roomies/screens/profile.dart';
 import 'package:roomies/screens/rooms.dart';
-import 'package:roomies/screens/search.dart';
+
 import 'package:roomies/ui/text.dart';
 import 'package:roomies/widgets/appbar.dart';
 
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   String uid = '';
   String location = '';
   String contact = '';
+  String name = '';
 
   @override
   void initState() {
@@ -38,26 +40,31 @@ class _HomePageState extends State<HomePage> {
         .collection('data')
         .document(userid)
         .get();
+    DocumentSnapshot name_snapshot = await Firestore.instance
+        .collection('users')
+        .document(location_snapshot['location'])
+        .collection('data')
+        .document(userid)
+        .get();
+
     setState(() {
       uid = userid;
       location = location_snapshot['location'];
       contact = contact_snapshot['phone'];
+      name = name_snapshot['name'];
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xff0a0a0a),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: appbar(),
       ),
-      // extendBody: true,
-
       bottomNavigationBar: BottomNavigationBar(
         elevation: 1.0,
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.grey[900],
         currentIndex: _selectedIndex,
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white,
@@ -91,10 +98,14 @@ class _HomePageState extends State<HomePage> {
             uid: uid,
             location: location,
           ),
-          Featured(),
+          Featured(
+            uid: uid,
+            location: location,
+          ),
           Profile(
             contact: contact,
             uid: uid,
+            name: name,
             location: location,
           )
         ],

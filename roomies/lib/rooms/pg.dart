@@ -57,6 +57,10 @@ class _PgState extends State<Pg> {
                                 uid: pgDocs[index]['uid'],
                                 contact: pgDocs[index]['contact'],
                                 d0: pgDocs[index]['display_image'],
+                                 d1: pgDocs[index]['d1'],
+                              d2: pgDocs[index]['d2'],
+                              d3: pgDocs[index]['d3'],
+                              d4: pgDocs[index]['d4'],
                                 place_location: pgDocs[index]['location'],
                               );
                             } else {

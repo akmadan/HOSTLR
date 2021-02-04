@@ -191,6 +191,7 @@ class _AddPlaceState extends State<AddPlace> {
           divider(),
           Heading(text: 'Other Information'),
           OtherInfo(),
+          Container(height: 200)
         ],
       ),
     );

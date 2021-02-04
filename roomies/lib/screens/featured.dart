@@ -34,7 +34,8 @@ class _FeaturedState extends State<Featured> {
           BestPg(
             uid: widget.uid,
             location: widget.location,
-          )
+          ),
+          SizedBox(height: 60)
         ]),
       ),
     );

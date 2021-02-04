@@ -40,6 +40,7 @@ class _RoomsState extends State<Rooms> {
             uid: widget.uid,
             location: widget.location,
           ),
+          SizedBox(height: 60)
         ]),
       ),
     );

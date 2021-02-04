@@ -147,6 +147,7 @@ class _ProfileState extends State<Profile> {
 
             LogoutWidget(),
             divider(),
+            SizedBox(height: 60)
           ],
         ),
       ),

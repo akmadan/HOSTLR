@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:roomies/ui/logo.dart';
 import 'package:roomies/ui/text.dart';
 import 'package:roomies/widgets/locationcaution.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class AuthForm extends StatefulWidget {
   @override
@@ -50,6 +50,11 @@ class _AuthFormState extends State<AuthForm> {
             email: email, password: password);
         String uid = authresult.user.uid;
         await Firestore.instance
+            .collection('userlocations')
+            .document(uid)
+            .setData({'location': dropdownValue.toLowerCase()});
+        
+        await Firestore.instance
             .collection('users')
             .document(dropdownValue.toLowerCase())
             .collection('data')
@@ -62,10 +67,7 @@ class _AuthFormState extends State<AuthForm> {
           'password': password,
           'location': dropdownValue.toLowerCase()
         });
-        await Firestore.instance
-            .collection('userlocations')
-            .document(uid)
-            .setData({'location': dropdownValue.toLowerCase()});
+        
       }
     } on PlatformException catch (err) {
       var message = 'An error occured';

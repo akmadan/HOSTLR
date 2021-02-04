@@ -77,7 +77,7 @@ class _PlaceState extends State<Place> {
                 d4: widget.d4,
               ),
               divider(),
-              SizedBox(height: 10),
+              SizedBox(height: 110),
               //------------------------
             ],
           )),

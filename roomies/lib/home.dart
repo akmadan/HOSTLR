@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roomies/screens/featured.dart';
@@ -21,11 +22,46 @@ class _HomePageState extends State<HomePage> {
   String contact = '';
   String name = '';
 
+  //-------------ADMOB------------------------
+
+  static final MobileAdTargetingInfo targetInfo = new MobileAdTargetingInfo(
+    testDevices: <String>[],
+    keywords: <String>['games', 'shoes', 'fashion', 'clothes', 'food'],
+    birthday: new DateTime.now(),
+    childDirected: true,
+  );
+  BannerAd _bannerAd;
+
+  BannerAd createBannerAd() {
+    return new BannerAd(
+        adUnitId:
+            "ca-app-pub-3937702122719326/9330972609",
+        size: AdSize.banner,
+        targetingInfo: targetInfo,
+        listener: (MobileAdEvent event) {
+          print("Banner event : $event");
+        });
+  }
+
   @override
   void initState() {
     finduserinfo();
     super.initState();
+    FirebaseAdMob.instance.initialize(
+        appId: "ca-app-pub-3937702122719326~4461789302");
+    _bannerAd = createBannerAd()
+      ..load()
+      ..show(
+        anchorOffset: 55.0,
+      );
   }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+  }
+  //-------------ADMOB------------------------
 
   finduserinfo() async {
     final FirebaseUser user = await FirebaseAuth.instance.currentUser();

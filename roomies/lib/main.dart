@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:roomies/check.dart';
+import 'package:roomies/ui/splash.dart';
 
 void main() => runApp(new MyApp());
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xff4f59ca),
           brightness: Brightness.dark,
           accentColor: Color(0xff6B82D3)),
-      home: Check(),
+      home: SplashScreen(),
     );
   }
 }

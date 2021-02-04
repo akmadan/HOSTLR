@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roomies/screens/Place.dart';
@@ -45,11 +46,6 @@ class RoomBubble extends StatefulWidget {
 class _RoomBubbleState extends State<RoomBubble> {
   bool issaved = false;
   bool isme = false;
-  @override
-  void initState() {
-    super.initState();
-    checksavedandme();
-  }
 
   checksavedandme() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -76,10 +72,49 @@ class _RoomBubbleState extends State<RoomBubble> {
     }
   }
 
+  //------------ADMOB------------------------
+  static final MobileAdTargetingInfo targetInfo = new MobileAdTargetingInfo(
+    testDevices: <String>[],
+    keywords: <String>['games', 'shoes', 'fashion', 'clothes', 'food'],
+    birthday: new DateTime.now(),
+    childDirected: true,
+  );
+  InterstitialAd _interstitialAd;
+
+  InterstitialAd createInterstitialAd() {
+    return InterstitialAd(
+      adUnitId: 'ca-app-pub-3937702122719326/5422134299',
+      targetingInfo: targetInfo,
+      listener: (MobileAdEvent event) {
+        print("InterstitialAd event $event");
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    checksavedandme();
+    super.initState();
+    FirebaseAdMob.instance
+        .initialize(appId: "ca-app-pub-3937702122719326~4461789302");
+  }
+
+  @override
+  void dispose() {
+    _interstitialAd?.dispose();
+    super.dispose();
+  }
+
+  //------------ADMOB------------------------
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        _interstitialAd?.dispose();
+        _interstitialAd = createInterstitialAd()
+          ..load()
+          ..show();
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -114,7 +149,6 @@ class _RoomBubbleState extends State<RoomBubble> {
                 children: [
                   Positioned(
                     child: Container(
-                      // width: 300,
                       height: 200,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -160,10 +194,8 @@ class _RoomBubbleState extends State<RoomBubble> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                // color: Colors.green,
                                 child: bold_text(text: widget.name, size: 19)),
                             Container(
-                                // color: Colors.green,
                                 child: modified_text(
                                     text: 'Rent : ₹ ' +
                                         widget.rent +
